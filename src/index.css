@@ -1,20 +1,9 @@
 .avatar {
-    width: 100px;
+    width: 120px;
     height: auto;
     border-radius: 50%;
 }
 
-.contactCont {
-    border-radius: 1em;
-    border: 1px solid black;
-    margin: 2em;
-}
 
-.contactManagement {
-    margin: 1em;
-}
 
-.contactManagement > div {
-    display: inline-block;
-    margin: 1em;
-}
+

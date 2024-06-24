@@ -1,37 +1,33 @@
 
+import { Contact } from "../components/Contact.jsx";
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
-import avatarImage from "../assets/img/m-avatar.png"
+import { Link, useNavigate } from "react-router-dom";
 
-export const Contacts = (props) => {
+export const Contacts = () => {
 
     const { store, dispatch } = useGlobalReducer();
+    const navigate = useNavigate();
 
-    const onClickHandler = () => {
-        // some code
-    } 
-
+    const onClickHandle = () => {
+        navigate('/contactForm')
+    }
 
     return (
-        <div className="text-center mt-5">
-            <h1>Contacts List</h1>
-            <ul className="list">
-                {store.contacts.map((contact, index) => (
-                    <li key={index} className="d-flex justify-content-between align-items-center contactCont">
-                        {/* TODO - make this as a small component Contact */}
-                        <div className="">
-                            <img className="avatar" src={avatarImage} alt="none" />
-                        </div>
-                        <div>
-                            <div>{contact.name}</div>
-                            <div>ph: {contact.phone}, email: {contact.email}, address: {contact.address}</div>
-                        </div>
-                        <div className="contactManagement">
-                            <button className="btn" onClick={onClickHandler}><i className="fa-solid fa-pen-to-square"></i></button>
-                            <button className="btn" onClick={onClickHandler}><i className="fa-solid fa-trash-can"></i></button>
-                        </div>
-                    </li>
-                ))}
-            </ul>
+        <div className="d-flex flex-column p-2">
+            <div className="text-center">
+                <div className="d-flex justify-content-between m-3">
+                    <h1>Contacts List</h1>
+                    <button onClick={onClickHandle} className="btn btn-primary"> Add Contact</button>
+                </div>
+                <ul className="list-group">
+                    {store.contacts.map((contact) => <Contact key={contact.id} contactObj={contact} />)}
+                </ul>
+            </div>
+            <div className="d-flex align-items-end m-3">
+                <Link to="/demo">
+                    <span className="">Navigate back to landing page</span>
+                </Link>
+            </div>
         </div>
     );
 }; 
